@@ -1,20 +1,16 @@
 const express = require('express');
-const path = require('path');
 const bp = require('body-parser');
 const session = require('express-session');
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const dbconnection = require('./database/index');
+const dbconnection = require('./database/mysql');
 const app = express();
 
 app.use(express.json());
-
-const route = require('./routes/index');
-
-app.use('/user', route);
-
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
+const user = require('./routes/user');
+app.use('/', user);
 
 var sessionStore = new SequelizeStore({
   db: dbconnection,
