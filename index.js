@@ -1,10 +1,9 @@
 const express = require('express');
 const bp = require('body-parser');
-const session = require('express-session');
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const dbconnection = require('./database/mysql');
 const app = express();
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
@@ -12,20 +11,6 @@ app.use(bp.urlencoded({ extended: true }));
 const user = require('./routes/user');
 app.use('/', user);
 
-var sessionStore = new SequelizeStore({
-  db: dbconnection,
-});
-
-const thirtyMinutes = 1000 * 60 * 30;
-app.use(session({
-  secret: "123456789",
-  saveUninitialized: true,
-  cookie: { maxAge: thirtyMinutes },
-  resave: false,
-  store: sessionStore
-}));
-
-sessionStore.sync();
 
 app.listen(3000, () => {
   console.log('Server rodando');
