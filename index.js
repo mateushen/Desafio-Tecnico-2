@@ -11,7 +11,6 @@ app.use(bp.urlencoded({ extended: true }));
 const user = require('./routes/user');
 app.use('/', user);
 
-
 app.listen(3000, () => {
   console.log('Server rodando');
 });
