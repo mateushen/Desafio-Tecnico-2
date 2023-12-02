@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const authConfig = require("../config/auth");
 
 function generateToken(userId) {
-    console.log('userID', userId);
     return jwt.sign({ id: userId }, authConfig.secret, { expiresIn: authConfig.expiresIn });
 }
 
