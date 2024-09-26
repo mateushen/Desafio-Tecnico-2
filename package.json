@@ -13,7 +13,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "express-async-handler": "^1.2.0",
     "jshint": "^2.13.6",
     "jsonwebtoken": "^9.0.2",
